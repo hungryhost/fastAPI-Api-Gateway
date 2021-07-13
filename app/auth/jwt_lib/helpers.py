@@ -3,10 +3,9 @@ import string
 import random
 
 import jwt
-
 from app.settings import settings
 
-from models.schemas import User
+from app.models.schemas import User
 
 
 def generate_token(length: int = 24) -> str:
