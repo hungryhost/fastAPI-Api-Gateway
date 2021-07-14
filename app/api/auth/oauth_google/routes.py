@@ -97,7 +97,7 @@ async def auth(request: Request, db: Session = Depends(get_db)):
         verified_user = User.from_orm(user)
         access_token = create_access_token(data=verified_user)
         response_dict = {
-            "user"                 : google_user.to_dict(),
+            "user"                 : google_user.dict(),
             "timestamp"            : datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f%z'),
             "unix_timestamp"       : time.time(),
             "access_token"         : access_token.decode('utf-8'),

@@ -10,11 +10,17 @@ class AuthorizationResponse(BaseModel):
     code: str
 
 
+class GoogleUser(BaseModel):
+    id: int
+    email: str
+    first_name: str
+    picture: str
+
+
 class User(BaseModel):
     id: int
-    login: str
-    name: str
     email: str
+    first_name: str
     picture: str
 
     class Config:
