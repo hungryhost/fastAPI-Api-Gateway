@@ -1,11 +1,8 @@
-from typing import Any, Dict
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.middleware.sessions import SessionMiddleware
 
-from oauth_google.routes import router as auth_router
-
+from api.auth.oauth_google.routes import router as auth_router
+from api.users.routes import router as user_router
 app = FastAPI()
 #app.add_middleware(SessionMiddleware, secret_key="!secret")
 app.add_middleware(
@@ -17,6 +14,7 @@ app.add_middleware(
 )
 
 app.include_router(auth_router)
+app.include_router(user_router)
 if __name__ == '__main__':
     import uvicorn
     import os
