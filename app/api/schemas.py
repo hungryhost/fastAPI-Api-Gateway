@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
 class Url(BaseModel):
@@ -21,7 +22,11 @@ class User(BaseModel):
     id: int
     email: str
     first_name: str
+    last_name: Optional[str] = None
+    middle_name: Optional[str] = None
     picture: str
+    disabled: bool
+    password: Optional[str] = None
 
     class Config:
         orm_mode = True
