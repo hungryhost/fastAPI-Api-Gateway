@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from api.auth.oauth_google.routes import router as auth_router
-from api.users.routes import router as user_router
+from api.api_router import api_router
 app = FastAPI()
 #app.add_middleware(SessionMiddleware, secret_key="!secret")
 app.add_middleware(
@@ -13,8 +12,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(auth_router)
-app.include_router(user_router)
+app.include_router(api_router, prefix='/api/v1')
+
 if __name__ == '__main__':
     import uvicorn
     import os
