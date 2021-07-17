@@ -15,6 +15,7 @@ class GoogleUser(BaseModel):
     id: int
     email: str
     first_name: str
+    last_name: str
     picture: str
 
 
@@ -22,11 +23,13 @@ class User(BaseModel):
     id: int
     email: str
     first_name: str
-    last_name: Optional[str] = None
+    last_name: str
     middle_name: Optional[str] = None
-    picture: str
-    disabled: bool
+    picture: Optional[str] = None
+    disabled: Optional[bool] = False
     password: Optional[str] = None
+    google_auth: Optional[bool] = False
+    hse_auth: Optional[bool] = False
 
     class Config:
         orm_mode = True
