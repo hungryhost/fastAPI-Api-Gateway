@@ -9,7 +9,7 @@ from app.schemas.auth_schemas import TokenModel
 from app.schemas.core_schemas import User
 from app.database import get_db
 from sqlalchemy.orm import Session
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/internal/login/")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/auth/internal/register/")
 
 
 async def get_current_user(
