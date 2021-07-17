@@ -4,8 +4,8 @@ from sqlalchemy.orm import Session
 
 
 from .models import User
-from app.api.schemas import GoogleUser
-from app.api.schemas import User as JwtUser
+from app.schemas.core_schemas import GoogleUser
+from app.schemas.core_schemas import User as JwtUser
 
 
 def get_user_by_id(db: Session, user_id: int) -> Optional[User]:
@@ -24,6 +24,7 @@ def create_user_google(db: Session, google_user: GoogleUser) -> User:
     user = User(
         email=google_user.email,
         first_name=google_user.first_name,
+        last_name=google_user.last_name,
         google_auth=True,
         hse_auth=False,
         picture=google_user.picture,

@@ -13,8 +13,10 @@ from starlette.responses import JSONResponse
 from app.api.auth.jwt_lib.helpers import create_access_token
 from app.database import get_db
 from app.models.crud import get_user_by_email, create_user_google
-from app.models.schemas import User, GoogleUser
+from app.schemas.core_schemas import GoogleUser
 from app.settings import settings
+from app.schemas.auth_schemas import LoginResponseModel
+from app.schemas.core_schemas import User as UserSchema
 
 LOGIN_URL = settings.google_login_url
 REDIRECT_URL = f"{settings.app_url}/"

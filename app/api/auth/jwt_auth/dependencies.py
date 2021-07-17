@@ -5,8 +5,8 @@ from fastapi.security.utils import get_authorization_scheme_param
 from pydantic import ValidationError
 from app.models.crud import get_user_by_email
 from app.settings import settings
-from .schemas import TokenModel
-from app.api.schemas import User
+from app.schemas.auth_schemas import TokenModel
+from app.schemas.core_schemas import User
 from app.database import get_db
 from sqlalchemy.orm import Session
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/internal/login/")
