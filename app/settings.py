@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     jwt_secret_key: str = Field("example_key_super_secret", env="SECRET_KEY")
     jwt_algorithm: str = Field("HS256", env="ALGORITHM")
     jwt_access_expiry: int = Field(3600, env="JWT_ACCESS_EXPIRY")
-    jwt_refresh_expiry: int = Field(3600, env="JWT_REFRESH_EXPIRY")
+    jwt_refresh_expiry: int = Field(86400, env="JWT_REFRESH_EXPIRY")
     google_auth_path: str = Field("api/v1/auth/external/google/", env="GOOGLE_AUTH_CALLBACK_PATH")
     google_conf_url: str = Field("https://accounts.google.com/.well-known/openid-configuration",
                                  env="GOOGLE_CONF_URL")
