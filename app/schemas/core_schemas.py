@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from typing import Optional
 
 
@@ -13,23 +13,29 @@ class AuthorizationResponse(BaseModel):
 
 class GoogleUser(BaseModel):
     id: int
-    email: str
+    email: EmailStr
     first_name: str
     last_name: str
     picture: str
 
 
-class User(BaseModel):
-    id: int
-    email: str
+class UserInfoSchema(BaseModel):
+    email: EmailStr
     first_name: str
     last_name: str
     middle_name: Optional[str] = None
     picture: Optional[str] = None
     disabled: Optional[bool] = False
-    password: Optional[str] = None
     google_auth: Optional[bool] = False
     hse_auth: Optional[bool] = False
+
+
+class UserCoreSchema(UserInfoSchema):
+    id: int
+
+
+class User(UserInfoSchema):
+    password: str
 
     class Config:
         orm_mode = True
