@@ -21,6 +21,15 @@ def get_users(db: Session, skip: int = 0, limit: int = 100) -> List[UserModel]:
     return db.query(UserModel).offset(skip).limit(limit).all()
 
 
+def update_user(db: Session, updated_user: Union[UserUpdateSchema, UserSetPasswordSchema]) -> UserModel:
+    db_user = db.query(UserModel).filter_by(id=updated_user.id).first()
+    for var, value in vars(updated_user).items():
+        setattr(db_user, var, value) if value else None
+    #db_user.modified = modified_now
+    db.add(db_user)
+    db.commit()
+    db.refresh(db_user)
+    return db_user
 
 
 def create_user_google(db: Session, google_user: GoogleUser) -> UserModel:
