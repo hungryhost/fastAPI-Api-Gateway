@@ -16,7 +16,7 @@ router = APIRouter()
 
 
 @router.post('/internal/register/', response_model=RegistrationResponseModel)
-async def register(
+def register(
 		registration_model: RegistrationModel,
 		db: Session = Depends(get_db)) -> Union[HTTPException, dict]:
 	user: Union[bool, UserCoreSchema] = create_user(db=db, reg_info=registration_model)
@@ -37,7 +37,7 @@ async def register(
 
 
 @router.post('/internal/login/', response_model=LoginResponseModel)
-async def login(
+def login(
 		login_model: LoginModel,
 		db: Session = Depends(get_db)) -> Union[HTTPException, dict]:
 	user: UserCoreSchema = authenticate_user(db, login_model.email, login_model.password)
@@ -58,6 +58,6 @@ async def login(
 
 
 @router.post('/internal/refresh/', response_model=TokenRefreshResponseModel)
-async def refresh_token(
+def refresh_token(
 		refresh_token_data: TokenRefreshRequestModel) -> Union[HTTPException, dict]:
 	return issue_new_token(refresh_token=refresh_token_data.refresh_token)

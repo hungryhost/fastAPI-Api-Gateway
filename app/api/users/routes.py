@@ -13,7 +13,7 @@ router = APIRouter()
 
 
 @router.get("/self/", response_model=Self)
-async def read_profile(
+def read_profile(
 		user: UserModel = Depends(get_current_active_user),
 		db: Session = Depends(get_db), ) -> dict:
 	db_user: UserModel = get_user_by_id(db, user.id)
@@ -28,7 +28,7 @@ async def read_profile(
 
 
 @router.put("/self/", response_model=Self)
-async def update_profile(
+def update_profile(
 		update_info: UserUpdateSchemaRequest,
 		user: UserModel = Depends(get_current_active_user),
 		db: Session = Depends(get_db), ) -> dict:
@@ -52,7 +52,7 @@ async def update_profile(
 
 
 @router.post("/self/set-password/")
-async def set_password(
+def set_password(
 		update_info: UserSetPasswordRequestSchema,
 		user: UserModel = Depends(get_current_active_user),
 		db: Session = Depends(get_db), ) -> dict:
