@@ -1,5 +1,7 @@
 from pydantic import BaseModel, validator, EmailStr
 from typing import Optional
+from app.schemas.core_schemas import UserCoreSchema
+from app.settings import settings
 
 
 class RegistrationModel(BaseModel):
@@ -22,26 +24,16 @@ class RegistrationModel(BaseModel):
         return v
 
 
-class UserInfoResponseModel(BaseModel):
-    id: Optional[int] = None
-    email: EmailStr
-    first_name: str
-    last_name: str
-    middle_name: Optional[str] = None
-    picture: Optional[str] = None
-    disabled: Optional[bool] = False
-    google_auth: Optional[bool] = None
-    hse_auth: Optional[bool] = None
-
-
 class TokenModel(BaseModel):
     access_token: str
     refresh_token: str
     token_type: Optional[str] = "bearer"
+    access_token_expiry: Optional[int] = settings.jwt_access_expiry
+    refresh_token_expiry: Optional[int] = settings.jwt_refresh_expiry
 
 
 class RegistrationResponseModel(TokenModel):
-    user_info: UserInfoResponseModel
+    user_info: UserCoreSchema
 
 
 class LoginModel(BaseModel):
@@ -50,9 +42,18 @@ class LoginModel(BaseModel):
 
 
 class LoginResponseModel(TokenModel):
-    user_info: UserInfoResponseModel
+    user_info: UserCoreSchema
 
 
-class TokenModel(BaseModel):
+class TokenDataModel(BaseModel):
     email: Optional[EmailStr] = None
 
+
+class TokenRefreshRequestModel(BaseModel):
+    refresh_token: str
+    grant_type: str
+
+
+class TokenRefreshResponseModel(BaseModel):
+    access_token: str
+    access_token_expiry: Optional[int] = settings.jwt_access_expiry
