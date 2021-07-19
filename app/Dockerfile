@@ -33,16 +33,14 @@ RUN pip install --no-cache /wheels/*
 
 # set work directory
 WORKDIR /usr/src/app
-RUN export PYTHONPATH="$PYTHONPATH:/usr/src/app"
-RUN export PYTHONPATH="$PYTHONPATH:/app"
-RUN export PYTHONPATH=$PWD
+
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 
 COPY * /usr/src/app/
 
 RUN mkdir  ./logs/
 RUN chmod +rwx ./logs/
-ENV PYTHONPATH "${PYTHONPATH}:/usr/src/app"
+
 RUN chmod +x /usr/src/app/entrypoint.sh
 #RUN ["chmod", "+x", "/usr/src/app/entrypoint.sh"]
 ENTRYPOINT ["sh", "/usr/src/app/entrypoint.sh"]
