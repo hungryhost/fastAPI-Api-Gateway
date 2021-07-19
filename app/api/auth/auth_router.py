@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from jwt_auth.routes import router as jwt_router
-from oauth_google.routes import router as google_router
+from api.auth.jwt_auth.routes import router as jwt_router
+from api.auth.oauth_google.routes import router as google_router
 
 auth_router = APIRouter()
 
