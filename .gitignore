@@ -26,21 +26,14 @@ yarn-error.log*
 ############### backend ##############
 /.idea/
 __pycache__/
-**/migrations/**
-**/**/migrations
 *.py[cod]
 *.log
 .log
 *.log.*
-backend/.idea/
-rentAccess/__pycache__/
-rentAccess/media/*
-rentAccess/media/*.jpg
+app/.idea/
 venv/
 *.sqlite3
 .env.development.server
 .env
-/rentAccess/static/
 /settings.zip
-rentAccess/htmlcov
 log.*
