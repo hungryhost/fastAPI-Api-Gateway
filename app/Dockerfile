@@ -33,7 +33,7 @@ RUN pip install --no-cache /wheels/*
 
 # set work directory
 WORKDIR /usr/src/app
-
+RUN ["export", "PYTHONPATH=/usr/src/app"]
 
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 
