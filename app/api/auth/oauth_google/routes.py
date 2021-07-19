@@ -69,7 +69,10 @@ async def google_auth(
 	token_endpoint: str = google_provider_cfg["token_endpoint"]
 	request_url: str = str(request.url)
 	request_base_url: str = str(request.base_url)
-
+	if "http:" in request_base_url:
+		request_base_url = "https:" + request_base_url[5:]
+	if "http:" in request_url:
+		request_url = "https:" + request_url[5:]
 	async with httpx.AsyncClient() as client:
 		token_url, headers, body = oauth.prepare_token_request(
 			token_endpoint,
