@@ -37,7 +37,7 @@ WORKDIR /usr/src/app
 
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 
-COPY ./* /usr/src/app/
+COPY * /usr/src/app/
 
 RUN mkdir  ./logs/
 RUN chmod +rwx ./logs/
