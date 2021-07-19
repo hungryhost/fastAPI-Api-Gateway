@@ -11,8 +11,9 @@ from alembic import context
 # access to the values within the .ini file in use.
 config = context.config
 sys.path = ["", ".."] + sys.path[1:]
-from app.settings import settings
-from app.database import Base
+
+from settings import settings
+from database import Base
 from app.models.models import *
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
