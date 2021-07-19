@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative.api import DeclarativeMeta
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
 
-from app.settings import settings
+from settings import settings
 
 SQLALCHEMY_DATABASE_URL = settings.db_uri
 
