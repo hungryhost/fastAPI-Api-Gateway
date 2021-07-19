@@ -24,13 +24,13 @@ class UserUpdateSchemaRequest(BaseModel):
     first_name: str
     last_name: str
     middle_name: Optional[str]
-    picture: Optional[str] = None
 
 
 class UserUpdateSchema(UserUpdateSchemaRequest):
     id: int
     hse_auth: bool
     google_auth: bool
+    picture: Optional[str] = None
 
 
 class UserSetPasswordRequestSchema(BaseModel):
