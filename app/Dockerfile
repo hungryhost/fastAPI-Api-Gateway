@@ -37,7 +37,7 @@ WORKDIR /usr/src/gateway-app
 
 COPY ./entrypoint.sh /usr/src/gateway-app/entrypoint.sh
 
-COPY ./* .
+COPY ./* /usr/src/gateway-app
 
 RUN mkdir  ./logs/
 RUN chmod +rwx ./logs/
