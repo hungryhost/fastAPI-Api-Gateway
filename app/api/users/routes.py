@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.api.auth.jwt_auth.dependencies import get_current_active_user
-from app.api.auth.jwt_auth.password_authentication_backends import get_password_hash
-from app.models.models import UserModel
-from app.schemas.user_schemas import Self, UserUpdateSchema, UserUpdateSchemaRequest, UserSetPasswordSchema, \
+from api.auth.jwt_auth.dependencies import get_current_active_user
+from api.auth.jwt_auth.password_authentication_backends import get_password_hash
+from models.db_models import UserModel
+from schemas.user_schemas import Self, UserUpdateSchema, UserUpdateSchemaRequest, UserSetPasswordSchema, \
 	UserSetPasswordRequestSchema
-from app.database import get_db
-from app.models.crud import get_user_by_id, update_user
+from database import get_db
+from models.crud import get_user_by_id, update_user
 
 router = APIRouter()
 

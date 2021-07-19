@@ -3,10 +3,10 @@ from typing import List, Optional, Union
 from sqlalchemy.orm import Session
 
 
-from .models import UserModel
-from app.schemas.core_schemas import GoogleUser
-from app.schemas.core_schemas import User as JwtUser
-from app.schemas.user_schemas import UserUpdateSchema, UserSetPasswordSchema
+from models.db_models import UserModel
+from schemas.core_schemas import GoogleUser
+from schemas.core_schemas import User as JwtUser
+from schemas.user_schemas import UserUpdateSchema, UserSetPasswordSchema
 
 
 def get_user_by_id(db: Session, user_id: int) -> Optional[UserModel]:

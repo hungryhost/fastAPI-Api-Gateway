@@ -9,15 +9,15 @@ from oauthlib.oauth2 import WebApplicationClient
 from sqlalchemy.orm import Session
 from starlette.requests import Request
 from starlette.responses import JSONResponse
-from app.schemas.oauth_schemas import LinkModel
-from app.api.auth.jwt_auth.jwt_utils import create_jwt_pair
-from app.database import get_db
-from app.models.crud import get_user_by_email, create_user_google, update_user
-from app.schemas.core_schemas import GoogleUser
-from app.settings import settings
-from app.schemas.auth_schemas import LoginResponseModel
-from app.schemas.core_schemas import UserCoreSchema
-from app.models.models import UserModel
+from schemas.oauth_schemas import LinkModel
+from api.auth.jwt_auth.jwt_utils import create_jwt_pair
+from database import get_db
+from models.crud import get_user_by_email, create_user_google, update_user
+from schemas.core_schemas import GoogleUser
+from settings import settings
+from schemas.auth_schemas import LoginResponseModel
+from schemas.core_schemas import UserCoreSchema
+from models.db_models import UserModel
 
 LOGIN_URL = settings.google_login_url
 REDIRECT_URL = f"{settings.app_url}/"

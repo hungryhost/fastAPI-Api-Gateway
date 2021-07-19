@@ -3,15 +3,14 @@ from typing import Union
 from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.orm import Session
 
-from app.api.auth.jwt_auth.jwt_utils import create_jwt_pair, issue_new_token
-from app.database import get_db
+from api.auth.jwt_auth.jwt_utils import create_jwt_pair, issue_new_token
+from database import get_db
 from .password_authentication_backends import authenticate_user
-from app.schemas.core_schemas import UserCoreSchema
-from app.schemas.auth_schemas import RegistrationModel, LoginModel, RegistrationResponseModel, LoginResponseModel, \
+from schemas.core_schemas import UserCoreSchema
+from schemas.auth_schemas import RegistrationModel, LoginModel, RegistrationResponseModel, LoginResponseModel, \
 	TokenRefreshRequestModel, TokenRefreshResponseModel
 from .registration_backends import create_user
-from app.models.models import UserModel
-from app.models.crud import get_user_by_email
+
 router = APIRouter()
 
 

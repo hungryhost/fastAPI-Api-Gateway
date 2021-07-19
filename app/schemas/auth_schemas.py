@@ -1,7 +1,7 @@
 from pydantic import BaseModel, validator, EmailStr
 from typing import Optional
-from app.schemas.core_schemas import UserCoreSchema
-from app.settings import settings
+from schemas.core_schemas import UserCoreSchema
+from settings import settings
 
 
 class RegistrationModel(BaseModel):

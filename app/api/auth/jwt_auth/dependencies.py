@@ -3,11 +3,11 @@ from typing import Union
 from jose import jwt, JWTError
 from fastapi import HTTPException, status, Depends
 from fastapi.security import OAuth2PasswordBearer
-from app.models.crud import get_user_by_email
-from app.settings import settings
+from models.crud import get_user_by_email
+from settings import settings
 from app.schemas.auth_schemas import TokenDataModel
-from app.models.models import UserModel
-from app.database import get_db
+from models.db_models import UserModel
+from database import get_db
 from sqlalchemy.orm import Session
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/auth/internal/register/")
 

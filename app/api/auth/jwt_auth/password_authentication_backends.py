@@ -1,9 +1,9 @@
 from typing import Union
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
-from app.models.models import UserModel
-from app.models.crud import get_user_by_email
-from app.schemas.core_schemas import UserCoreSchema
+from models.db_models import UserModel
+from models.crud import get_user_by_email
+from schemas.core_schemas import UserCoreSchema
 pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 
