@@ -3,10 +3,10 @@ from typing import Union
 from sqlalchemy.orm import Session
 from models.crud import get_user_by_email, create_user_jwt
 from models.db_models import UserModel
-from auth_schemas import RegistrationModel
+from schemas.auth_schemas import RegistrationModel
 from .password_authentication_backends import get_password_hash
-from app.schemas.core_schemas import User as UserSchema
-from app.schemas.core_schemas import UserCoreSchema
+from schemas.core_schemas import User as UserSchema
+from schemas.core_schemas import UserCoreSchema
 
 
 def create_user(db: Session, reg_info: RegistrationModel) -> Union[bool, UserCoreSchema]:

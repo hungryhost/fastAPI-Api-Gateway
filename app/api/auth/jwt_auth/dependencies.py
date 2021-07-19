@@ -5,7 +5,7 @@ from fastapi import HTTPException, status, Depends
 from fastapi.security import OAuth2PasswordBearer
 from models.crud import get_user_by_email
 from settings import settings
-from app.schemas.auth_schemas import TokenDataModel
+from schemas.auth_schemas import TokenDataModel
 from models.db_models import UserModel
 from database import get_db
 from sqlalchemy.orm import Session
