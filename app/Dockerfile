@@ -41,7 +41,7 @@ COPY * /usr/src/app/
 
 RUN mkdir  ./logs/
 RUN chmod +rwx ./logs/
-
+ENV PYTHONPATH "${PYTHONPATH}:/usr/src/app"
 RUN chmod +x /usr/src/app/entrypoint.sh
 #RUN ["chmod", "+x", "/usr/src/app/entrypoint.sh"]
 ENTRYPOINT ["sh", "/usr/src/app/entrypoint.sh"]
