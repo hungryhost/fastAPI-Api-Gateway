@@ -6,7 +6,7 @@ from fastapi import HTTPException, status
 from jose import jwt, JWTError
 
 
-from app.settings import settings
+from settings import settings
 
 
 def generate_token(length: int = 24) -> str:
