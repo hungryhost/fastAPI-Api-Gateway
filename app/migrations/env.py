@@ -12,9 +12,9 @@ from alembic import context
 config = context.config
 sys.path = ["", ".."] + sys.path[1:]
 
-from app.settings import settings
-from app.database import Base
-from app.models.models import *
+from settings import settings
+from database import Base
+from models.models import *
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
