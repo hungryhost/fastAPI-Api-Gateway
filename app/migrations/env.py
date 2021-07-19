@@ -14,7 +14,7 @@ sys.path = ["", ".."] + sys.path[1:]
 
 from settings import settings
 from database import Base
-from app.models.models import *
+from models.models import *
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
