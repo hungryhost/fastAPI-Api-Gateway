@@ -10,7 +10,13 @@ from schemas.core_schemas import UserCoreSchema
 from schemas.auth_schemas import RegistrationModel, LoginModel, RegistrationResponseModel, LoginResponseModel, \
 	TokenRefreshRequestModel, TokenRefreshResponseModel
 from .registration_backends import create_user
+import logging
+import time
 
+
+log = logging.getLogger(__name__)
+log.setLevel(logging.INFO)
+log.info('Starting loggin jwt auth routes!')
 router = APIRouter()
 
 
@@ -39,16 +45,22 @@ def register(
 def login(
 		login_model: LoginModel,
 		db: Session = Depends(get_db)) -> Union[HTTPException, dict]:
+	start = time.time()
 	user: UserCoreSchema = authenticate_user(db, login_model.email, login_model.password)
+	end = time.time()
+	log.info("authenticated user in {}".format(end - start))
 	if not user:
 		raise HTTPException(
 			status_code=status.HTTP_401_UNAUTHORIZED,
 			detail="Incorrect username or password",
 			headers={"WWW-Authenticate": "Bearer"},
 		)
+	start = time.time()
 	access_token, refresh_token = create_jwt_pair(
 		data={"sub": user.email}
 	)
+	end = time.time()
+	log.info("got jwt pair in {}".format(end - start))
 	return {
 		"access_token": access_token,
 		"refresh_token": refresh_token,
