@@ -15,9 +15,9 @@ import time
 import logging
 from fastapi.logger import logger as fastapi_logger
 
-logger = logging.getLogger("gunicorn.error")
-fastapi_logger.handlers = logger.handlers
-fastapi_logger.setLevel(logger.level)
+logging.basicConfig(level=logging.INFO)
+name_logger = logging.getLogger(__name__)
+name_logger.setLevel(logging.INFO)
 
 router = APIRouter()
 
@@ -50,7 +50,7 @@ def login(
 	start = time.time()
 	user: UserCoreSchema = authenticate_user(db, login_model.email, login_model.password)
 	end = time.time()
-	logger.info("authenticated user in {}".format(end - start))
+	name_logger.warning("authenticated user in {}".format(end - start))
 	if not user:
 		raise HTTPException(
 			status_code=status.HTTP_401_UNAUTHORIZED,
@@ -62,7 +62,7 @@ def login(
 		data={"sub": user.email}
 	)
 	end = time.time()
-	logger.info("got jwt pair in {}".format(end - start))
+	name_logger.warning("got jwt pair in {}".format(end - start))
 	return {
 		"access_token": access_token,
 		"refresh_token": refresh_token,
