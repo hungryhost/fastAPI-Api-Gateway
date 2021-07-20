@@ -14,7 +14,7 @@ import logging
 import time
 
 
-log = logging.getLogger(__name__)
+log = logging.getLogger("gunicorn.error")
 log.setLevel(logging.INFO)
 log.info('Starting loggin jwt auth routes!')
 router = APIRouter()
