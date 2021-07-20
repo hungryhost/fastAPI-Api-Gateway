@@ -5,6 +5,8 @@ from models.db_models import UserModel
 from models.crud import get_user_by_email
 from schemas.core_schemas import UserCoreSchema
 import logging
+import time
+
 logging.basicConfig(level=logging.INFO)
 name_logger = logging.getLogger(__name__)
 name_logger.setLevel(logging.INFO)
