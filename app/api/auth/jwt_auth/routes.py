@@ -59,4 +59,4 @@ def login(
 @router.post('/internal/refresh/', response_model=TokenRefreshResponseModel)
 def refresh_token(
 		refresh_token_data: TokenRefreshRequestModel) -> Union[HTTPException, dict]:
-	return issue_new_token(refresh_token=refresh_token_data.refresh_token)
+	return {"access_token": issue_new_token(refresh_token=refresh_token_data.refresh_token)}
