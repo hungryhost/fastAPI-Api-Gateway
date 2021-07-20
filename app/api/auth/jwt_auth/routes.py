@@ -10,13 +10,14 @@ from schemas.core_schemas import UserCoreSchema
 from schemas.auth_schemas import RegistrationModel, LoginModel, RegistrationResponseModel, LoginResponseModel, \
 	TokenRefreshRequestModel, TokenRefreshResponseModel
 from .registration_backends import create_user
-import logging
+from fastapi.logger import logger
 import time
+from fastapi.logger import logger as fastapi_logger
 
+logger = logging.getLogger("gunicorn.error")
+fastapi_logger.handlers = logger.handlers
+fastapi_logger.setLevel(logger.level)
 
-log = logging.getLogger("gunicorn.error")
-log.setLevel(logging.INFO)
-log.info('Starting loggin jwt auth routes!')
 router = APIRouter()
 
 
@@ -48,7 +49,7 @@ def login(
 	start = time.time()
 	user: UserCoreSchema = authenticate_user(db, login_model.email, login_model.password)
 	end = time.time()
-	log.info("authenticated user in {}".format(end - start))
+	logger.info("authenticated user in {}".format(end - start))
 	if not user:
 		raise HTTPException(
 			status_code=status.HTTP_401_UNAUTHORIZED,
@@ -60,7 +61,7 @@ def login(
 		data={"sub": user.email}
 	)
 	end = time.time()
-	log.info("got jwt pair in {}".format(end - start))
+	logger.info("got jwt pair in {}".format(end - start))
 	return {
 		"access_token": access_token,
 		"refresh_token": refresh_token,
