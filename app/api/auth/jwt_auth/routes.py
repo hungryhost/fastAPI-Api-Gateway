@@ -12,6 +12,7 @@ from schemas.auth_schemas import RegistrationModel, LoginModel, RegistrationResp
 from .registration_backends import create_user
 from fastapi.logger import logger
 import time
+import logging
 from fastapi.logger import logger as fastapi_logger
 
 logger = logging.getLogger("gunicorn.error")
